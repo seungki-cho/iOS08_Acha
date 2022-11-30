@@ -46,6 +46,10 @@
 		76A2E1A12923C5A7001E887A /* SingleGameViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76A2E19F2923C5A7001E887A /* SingleGameViewModel.swift */; };
 		76A2E1A32923D94C001E887A /* CLLocationCoordinate2D+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76A2E1A22923D94C001E887A /* CLLocationCoordinate2D+.swift */; };
 		76A2E1A529249099001E887A /* Double+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76A2E1A429249099001E887A /* Double+.swift */; };
+		76A7DFBE29374C5C00F08392 /* BadgeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76A7DFBD29374C5C00F08392 /* BadgeViewController.swift */; };
+		76A7DFC029374C7600F08392 /* BadgeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76A7DFBF29374C7600F08392 /* BadgeViewModel.swift */; };
+		76A7DFC229374FBA00F08392 /* BadgeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76A7DFC129374FBA00F08392 /* BadgeCell.swift */; };
+		76A7DFC4293754AA00F08392 /* MyPageHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76A7DFC3293754AA00F08392 /* MyPageHeaderView.swift */; };
 		76AAEC95292F9E92006B64DB /* DefaultLocationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76AAEC94292F9E92006B64DB /* DefaultLocationService.swift */; };
 		76B3BF442924C7450056ABFD /* SingleGameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76B3BF432924C7450056ABFD /* SingleGameViewController.swift */; };
 		76B3BF462924D93C0056ABFD /* SingleGameCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76B3BF452924D93C0056ABFD /* SingleGameCoordinator.swift */; };
@@ -184,6 +188,10 @@
 		76A2E19F2923C5A7001E887A /* SingleGameViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SingleGameViewModel.swift; sourceTree = "<group>"; };
 		76A2E1A22923D94C001E887A /* CLLocationCoordinate2D+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CLLocationCoordinate2D+.swift"; sourceTree = "<group>"; };
 		76A2E1A429249099001E887A /* Double+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Double+.swift"; sourceTree = "<group>"; };
+		76A7DFBD29374C5C00F08392 /* BadgeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BadgeViewController.swift; sourceTree = "<group>"; };
+		76A7DFBF29374C7600F08392 /* BadgeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BadgeViewModel.swift; sourceTree = "<group>"; };
+		76A7DFC129374FBA00F08392 /* BadgeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BadgeCell.swift; sourceTree = "<group>"; };
+		76A7DFC3293754AA00F08392 /* MyPageHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageHeaderView.swift; sourceTree = "<group>"; };
 		76AAEC94292F9E92006B64DB /* DefaultLocationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultLocationService.swift; sourceTree = "<group>"; };
 		76B3BF432924C7450056ABFD /* SingleGameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingleGameViewController.swift; sourceTree = "<group>"; };
 		76B3BF452924D93C0056ABFD /* SingleGameCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingleGameCoordinator.swift; sourceTree = "<group>"; };
@@ -601,6 +609,10 @@
 			isa = PBXGroup;
 			children = (
 				E5BE8BB22922200C00E9CFE8 /* MyPageViewController.swift */,
+				76A7DFBD29374C5C00F08392 /* BadgeViewController.swift */,
+				76A7DFBF29374C7600F08392 /* BadgeViewModel.swift */,
+				76A7DFC129374FBA00F08392 /* BadgeCell.swift */,
+				76A7DFC3293754AA00F08392 /* MyPageHeaderView.swift */,
 			);
 			path = MyPage;
 			sourceTree = "<group>";
@@ -990,6 +1002,7 @@
 			files = (
 				E5BE8BB52922201600E9CFE8 /* SignupViewController.swift in Sources */,
 				761C1C09292E437E000C88D0 /* DefaultSingleGameUseCase.swift in Sources */,
+				76A7DFC029374C7600F08392 /* BadgeViewModel.swift in Sources */,
 				F1FCEE11292B4C87001A55D6 /* AuthButton.swift in Sources */,
 				761E5F112935F2DF00E6CACC /* FirebasePath.swift in Sources */,
 				E5BE8BBA2922217600E9CFE8 /* TabBarType.swift in Sources */,
@@ -1028,6 +1041,7 @@
 				E5BE8BB72922201F00E9CFE8 /* LoginViewController.swift in Sources */,
 				76B505FB293351AB0087444D /* RealtimeDatabaseNetworkService.swift in Sources */,
 				76B3BF442924C7450056ABFD /* SingleGameViewController.swift in Sources */,
+				76A7DFC4293754AA00F08392 /* MyPageHeaderView.swift in Sources */,
 				F156F11A29235EC50053E807 /* ImageConstants.swift in Sources */,
 				F1B0D8AE292CCAAC00EBDD02 /* UserDTO.swift in Sources */,
 				E5BE8BB12922200000E9CFE8 /* RecordViewController.swift in Sources */,
@@ -1037,6 +1051,7 @@
 				F12210C2292D031800AE5F26 /* KeyChainManager.swift in Sources */,
 				E5BE8B952922196D00E9CFE8 /* TabBarCoordinator.swift in Sources */,
 				E5BE8BAD29221FE500E9CFE8 /* HomeViewController.swift in Sources */,
+				76A7DFC229374FBA00F08392 /* BadgeCell.swift in Sources */,
 				E5027D5629265D910021BF60 /* SelectMapRecordCell.swift in Sources */,
 				E516A6C02923942500CD6BDB /* RecordCell.swift in Sources */,
 				47935E952923310700481307 /* SystemImageNameSpace.swift in Sources */,
@@ -1068,6 +1083,7 @@
 				F18A7FD1292C5DA50054FADE /* UIImage+Extension.swift in Sources */,
 				76B505FD293351CC0087444D /* DefaultRealtimeDatabaseNetworkService.swift in Sources */,
 				76A2E1A32923D94C001E887A /* CLLocationCoordinate2D+.swift in Sources */,
+				76A7DFBE29374C5C00F08392 /* BadgeViewController.swift in Sources */,
 				764AF29D292B639200D16DC9 /* UIViewController+.swift in Sources */,
 				F18A7FCF292BE75A0054FADE /* String+Extension.swift in Sources */,
 				76B3BF50292624850056ABFD /* InGamePlayMenuViewController.swift in Sources */,
