@@ -10,6 +10,20 @@ import Foundation
 struct BadgeDTO: Codable {
     let id: Int
     let name: String
-    let image: String
+    let imageURL: String
     let isHidden: Bool
+
+    enum CodingKeys: String, CodingKey {
+        case id
+        case name
+        case imageURL = "image"
+        case isHidden
+    }
+
+    func toDomain() -> Badge {
+        return Badge(id: id,
+                     name: name,
+                     imageURL: imageURL,
+                     isHidden: isHidden)
+    }
 }
