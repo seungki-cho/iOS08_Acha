@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import RxSwift
 import Then
 import SnapKit
 
@@ -18,6 +19,8 @@ class BadgeCell: UICollectionViewCell {
     private lazy var badgeImage: UIImageView = UIImageView().then {
         $0.contentMode = .scaleToFill
         $0.layer.cornerRadius = 50
+        $0.layer.borderWidth = 3
+        $0.layer.borderColor = UIColor.pointLight.cgColor
     }
     // MARK: - Properties
     static let identifer = "BadgeCell"
@@ -41,13 +44,14 @@ class BadgeCell: UICollectionViewCell {
         }
         
         badgeLabel.snp.makeConstraints {
-            $0.top.equalTo(badgeImage).offset(5)
+            $0.top.equalTo(badgeImage.snp.bottom).offset(5)
             $0.leading.trailing.bottom.equalToSuperview()
+            $0.height.equalTo(20)
         }
     }
     
-    func bind(image: UIImage, badgeName: String) {
-        badgeImage.image = image
+    func bind(image: String, badgeName: String, disposeBag: DisposeBag) {
+        badgeImage.setImage(url: image, disposeBag: disposeBag)
         badgeLabel.text = badgeName
     }
 }

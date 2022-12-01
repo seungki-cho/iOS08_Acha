@@ -13,6 +13,7 @@ class MyPageHeaderView: UICollectionReusableView {
     // MARK: - UI properties
     private lazy var titleLabel: UILabel = UILabel().then {
         $0.font = .smallTitle
+        $0.textColor = .white
     }
     private lazy var moreButton: UIButton = UIButton().then {
         $0.setTitle("더보기 >", for: .normal)
@@ -25,7 +26,7 @@ class MyPageHeaderView: UICollectionReusableView {
     // MARK: - Lifecycles
     override init(frame: CGRect) {
         super.init(frame: frame)
-        setupSubviews()
+        configureUI()
     }
     
     required init?(coder: NSCoder) {
@@ -33,7 +34,10 @@ class MyPageHeaderView: UICollectionReusableView {
     }
     
     // MARK: - Helpers
-    private func setupSubviews() {
+    private func configureUI() {
+        backgroundColor = .pointLight
+        layer.cornerRadius = 10
+        
         [titleLabel, moreButton].forEach { addSubview($0) }
         
         titleLabel.snp.makeConstraints {
