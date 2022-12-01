@@ -12,6 +12,7 @@ enum FirebaseRealtimeType {
     case record(id: Int?)
     case user(id: String)
     case room(id: String)
+    case badge
     
     var path: String {
         switch self {
@@ -23,6 +24,8 @@ enum FirebaseRealtimeType {
             return "User/\(id)"
         case .room(let id):
             return "Room/\(id)"
+        case .badge:
+            return "badge"
         }
     }
 }
