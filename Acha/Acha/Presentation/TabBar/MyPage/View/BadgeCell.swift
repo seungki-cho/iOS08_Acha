@@ -22,6 +22,7 @@ final class BadgeCell: UICollectionViewCell {
         $0.layer.cornerRadius = 50
         $0.layer.borderWidth = 3
         $0.layer.borderColor = UIColor.pointLight.cgColor
+        $0.clipsToBounds = true
     }
     // MARK: - Properties
     static let identifer = "BadgeCell"
@@ -45,7 +46,7 @@ final class BadgeCell: UICollectionViewCell {
         }
         
         badgeLabel.snp.makeConstraints {
-            $0.top.equalTo(badgeImage.snp.bottom.snp.bottom).offset(5)
+            $0.top.equalTo(badgeImage.snp.bottom).offset(5)
             $0.leading.trailing.bottom.equalToSuperview()
             $0.height.equalTo(20)
             $0.height.equalTo(20)

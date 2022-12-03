@@ -14,19 +14,19 @@ class BadgeViewController: UIViewController {
     // MARK: - UI properties
     private var collectionView: UICollectionView!
     // MARK: - Properties
-    enum BadgeSection {
+    enum BadgeSection: Int {
         case brandNew
         case acquired
         case unacquired
         
         var title: String {
             switch self {
-                case .brandNew:
-                    return "최근 달성 기록"
-                case .acquired:
-                    return "획득한 뱃지"
-                case .unacquired:
-                    return "미획득한 뱃지"
+            case .brandNew:
+                return "최근 달성 기록"
+            case .acquired:
+                return "획득한 뱃지"
+            case .unacquired:
+                return "미획득한 뱃지"
             }
         }
     }
@@ -53,6 +53,7 @@ class BadgeViewController: UIViewController {
     private func setupSubviews() {
         navigationItem.title = "뱃지"
         cofigureCollectionView()
+        bind()
     }
     
     private func cofigureCollectionView() {
@@ -64,7 +65,7 @@ class BadgeViewController: UIViewController {
         collectionView.register(MyPageHeaderView.self,
                                 forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader,
                                 withReuseIdentifier: MyPageHeaderView.identifer)
-        collectionView.backgroundColor = .lightGray
+        collectionView.backgroundColor = .white
         
         view.addSubview(collectionView)
         collectionView.snp.makeConstraints {
@@ -86,13 +87,29 @@ class BadgeViewController: UIViewController {
                       disposeBag: self.disposeBag)
             return cell
         })
+        configureHeaderDataSource()
+        makeDefaultSnapshot()
+    }
+    private func configureHeaderDataSource() {
+        dataSource?.supplementaryViewProvider = { collectionView, kind, indexPath in
+            guard kind == UICollectionView.elementKindSectionHeader,
+                  let header = collectionView.dequeueReusableSupplementaryView(
+                    ofKind: kind,
+                    withReuseIdentifier: MyPageHeaderView.identifer,
+                    for: indexPath) as? MyPageHeaderView
+            else { return UICollectionReusableView() }
+            
+            guard let sectionType = BadgeSection(rawValue: indexPath.section) else { return header }
+            header.bind(title: sectionType.title, moreButtonHandler: nil)
+            return header
+        }
     }
     
     private func configureCollectionViewLayout() -> UICollectionViewLayout {
         UICollectionViewCompositionalLayout { (sectionIndex: Int, _ ) -> NSCollectionLayoutSection in
             let itemSize = NSCollectionLayoutSize(
                 widthDimension: .fractionalWidth(1/3),
-                heightDimension: .fractionalHeight(145))
+                heightDimension: .absolute(145))
             let item = NSCollectionLayoutItem(layoutSize: itemSize)
             let itemInsets = NSDirectionalEdgeInsets(top: 10, leading: 10, bottom: 10, trailing: 10)
             item.contentInsets = itemInsets
@@ -118,10 +135,37 @@ class BadgeViewController: UIViewController {
         }
     }
     
-    private func makeBadgeSnapShot(badges: [Badge]) {
+    private func bind() {
+        let output = viewModel.transform(input: BadgeViewModel.Input())
+        output.brandNewBadges
+            .subscribe(onNext: { [weak self] badges in
+                guard let self else { return }
+                self.makeBadgeSnapShot(badges: badges, section: .brandNew)
+            }).disposed(by: disposeBag)
+        output.aquiredBadges
+            .subscribe(onNext: { [weak self] badges in
+                guard let self else { return }
+                self.makeBadgeSnapShot(badges: badges, section: .acquired)
+            }).disposed(by: disposeBag)
+        output.inaquiredBadges
+            .subscribe(onNext: { [weak self] badges in
+                guard let self else { return }
+                self.makeBadgeSnapShot(badges: badges, section: .unacquired)
+                print(badges)
+            }).disposed(by: disposeBag)
+    }
+    
+    private func makeDefaultSnapshot() {
         guard let dataSource else { return }
         var snapshot = dataSource.snapshot()
         snapshot.appendSections([.brandNew, .acquired, .unacquired])
-        let brandNewBadges = badges.filter { $0.isOwn}
+        dataSource.apply(snapshot)
+    }
+    
+    private func makeBadgeSnapShot(badges: [Badge], section: BadgeSection) {
+        guard let dataSource else { return }
+        var snapshot = dataSource.snapshot()
+        snapshot.appendItems(badges, toSection: section)
+        dataSource.apply(snapshot)
     }
 }
