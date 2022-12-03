@@ -14,8 +14,9 @@ extension UIImageView {
             .subscribe(on: MainScheduler.instance)
             .subscribe(onNext: { data in
                 self.image = UIImage(data: data)
-            },onError: {
+            }, onError: {
                 print($0)
+                #warning("이미지를 못 불러오는 경우는 ?")
             }).disposed(by: disposeBag)
     }
 }
