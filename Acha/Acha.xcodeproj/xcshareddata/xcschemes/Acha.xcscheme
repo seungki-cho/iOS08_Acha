@@ -28,28 +28,6 @@
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       shouldUseLaunchSchemeArgsEnv = "YES">
       <Testables>
-         <TestableReference
-            skipped = "NO"
-            parallelizable = "YES">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "471863CE291E155800A35786"
-               BuildableName = "AchaTests.xctest"
-               BlueprintName = "AchaTests"
-               ReferencedContainer = "container:Acha.xcodeproj">
-            </BuildableReference>
-         </TestableReference>
-         <TestableReference
-            skipped = "NO"
-            parallelizable = "YES">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "471863D8291E155800A35786"
-               BuildableName = "AchaUITests.xctest"
-               BlueprintName = "AchaUITests"
-               ReferencedContainer = "container:Acha.xcodeproj">
-            </BuildableReference>
-         </TestableReference>
       </Testables>
    </TestAction>
    <LaunchAction

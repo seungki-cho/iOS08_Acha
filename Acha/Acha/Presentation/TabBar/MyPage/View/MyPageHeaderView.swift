@@ -9,7 +9,7 @@ import UIKit
 import Then
 import SnapKit
 
-class MyPageHeaderView: UICollectionReusableView {
+final class MyPageHeaderView: UICollectionReusableView {
     // MARK: - UI properties
     private lazy var titleLabel: UILabel = UILabel().then {
         $0.font = .smallTitle
@@ -18,15 +18,19 @@ class MyPageHeaderView: UICollectionReusableView {
     private lazy var moreButton: UIButton = UIButton().then {
         $0.setTitle("더보기 >", for: .normal)
         $0.setTitleColor(.white, for: .normal)
-        $0.titleLabel?.font = .postBody
+        $0.titleLabel?.font = .tinyTitle
         $0.isHidden = true
     }
+    
     // MARK: - Properties
     static let identifer = "MyPageHeaderView"
+    private var moreButtonHandler: () -> Void = {}
+    
     // MARK: - Lifecycles
     override init(frame: CGRect) {
         super.init(frame: frame)
         configureUI()
+        setUpMoreButton()
     }
     
     required init?(coder: NSCoder) {
@@ -39,7 +43,6 @@ class MyPageHeaderView: UICollectionReusableView {
         layer.cornerRadius = 10
         
         [titleLabel, moreButton].forEach { addSubview($0) }
-        
         titleLabel.snp.makeConstraints {
             $0.leading.equalToSuperview().offset(15)
             $0.top.bottom.equalToSuperview().inset(10)
@@ -48,12 +51,24 @@ class MyPageHeaderView: UICollectionReusableView {
         moreButton.snp.makeConstraints {
             $0.trailing.equalToSuperview().offset(-15)
             $0.top.bottom.equalTo(titleLabel)
-            $0.width.equalTo(70)
         }
     }
     
-    func bind(title: String, isHiddenMoreButton: Bool = true) {
+    private func setUpMoreButton() {
+        moreButton.addTarget(self,
+                             action: #selector(moreButtonDidClick),
+                             for: .touchUpInside)
+    }
+    
+    @objc func moreButtonDidClick() {
+        moreButtonHandler()
+    }
+    
+    func bind(title: String, moreButtonHandler: (() -> Void)?) {
         titleLabel.text = title
-        moreButton.isHidden = isHiddenMoreButton
+        if let handler = moreButtonHandler {
+            moreButton.isHidden = false
+            self.moreButtonHandler = handler
+        }
     }
 }

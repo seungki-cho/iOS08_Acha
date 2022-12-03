@@ -9,15 +9,16 @@ import UIKit
 import RxSwift
 import Then
 import SnapKit
+import RxSwift
 
-class BadgeCell: UICollectionViewCell {
+final class BadgeCell: UICollectionViewCell {
     // MARK: - UI properties
     private lazy var badgeLabel: UILabel = UILabel().then {
         $0.font = .subBody
         $0.textAlignment = .center
     }
     private lazy var badgeImage: UIImageView = UIImageView().then {
-        $0.contentMode = .scaleToFill
+        $0.contentMode = .scaleAspectFit
         $0.layer.cornerRadius = 50
         $0.layer.borderWidth = 3
         $0.layer.borderColor = UIColor.pointLight.cgColor
@@ -39,13 +40,14 @@ class BadgeCell: UICollectionViewCell {
         [badgeLabel, badgeImage].forEach { addSubview($0) }
         
         badgeImage.snp.makeConstraints {
-            $0.top.leading.trailing.equalToSuperview()
-            $0.height.width.equalTo(100)
+            $0.top.centerX.equalToSuperview()
+            $0.width.height.equalTo(100)
         }
         
         badgeLabel.snp.makeConstraints {
-            $0.top.equalTo(badgeImage.snp.bottom).offset(5)
+            $0.top.equalTo(badgeImage.snp.bottom.snp.bottom).offset(5)
             $0.leading.trailing.bottom.equalToSuperview()
+            $0.height.equalTo(20)
             $0.height.equalTo(20)
         }
     }
